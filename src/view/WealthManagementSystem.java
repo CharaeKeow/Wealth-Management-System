@@ -28,32 +28,33 @@ public class WealthManagementSystem extends View {
 		if (choice == 1) {
 			HouseView hv = new HouseView();
 			hv.displayOption();
-			hv.selectOption(scanner, 3);
+			hv.selectOption(scanner, 4);
 			displayOption();
 		} else if (choice == 2) {
 			LandView lv = new LandView();
 			lv.displayOption();
-			lv.selectOption(scanner, 3);
+			lv.selectOption(scanner, 4);
 			displayOption();
 		} else if (choice == 3) {
 			CarView cv = new CarView();
 			cv.displayOption();
-			cv.selectOption(scanner, 3);
+			cv.selectOption(scanner, 4);
 			displayOption();
 		} else if (choice == 4) {
 			MotorcycleView mv = new MotorcycleView();
 			mv.displayOption();
-			mv.selectOption(scanner, 3);
+			mv.selectOption(scanner, 4);
 			displayOption();
 		} else if (choice == 5) {
 			GoldView gv = new GoldView();
 			gv.displayOption();
-			gv.selectOption(scanner, 3);
+			gv.selectOption(scanner, 4);
 			displayOption();
 		} else if (choice == 6) {
+
 			BankAccountView bav = new BankAccountView();
 			bav.displayOption();
-			bav.selectOption(scanner, 3);
+			bav.selectOption(scanner, 6);
 			displayOption();
 		} 
 	}

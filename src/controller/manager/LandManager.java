@@ -2,6 +2,7 @@ package controller.manager;
 
 import java.util.Vector;
 
+import controller.validator.InvalidValueException;
 import model.Land;
 
 public class LandManager {
@@ -29,6 +30,15 @@ private static Vector<Land> lands = new Vector<>(); //store house
 	public static void displayLand(Land land) {
 		System.out.println("\nPrice per meter square: " + land.getPricePerM2());
 		System.out.println("Area: " + land.getArea());
-		System.out.println("Monetary value: " + land.calculateMonetaryValue());
+	}
+	
+	public static void displayMonetaryValue() throws InvalidValueException {
+		double total = 0;
+		
+		for (Land land : lands) {
+			total += land.calculateMonetaryValue();
+		}
+		
+		System.out.println("RM " + total);
 	}
 }

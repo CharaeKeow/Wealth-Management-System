@@ -1,12 +1,14 @@
 package model;
 
+import controller.validator.InvalidValueException;
+
 public class House extends Property implements Asset {
 
 	private int numOfFloors;
 	private String address;
 	private double marketValue;
 	
-	public House(double area, int numOfFloors, String address, double marketValue) {
+	public House(double area, int numOfFloors, String address, double marketValue) throws InvalidValueException {
 		super(area);
 		this.setAddress(address);
 		this.setMarketValue(marketValue);
@@ -38,8 +40,8 @@ public class House extends Property implements Asset {
 	}
 	
 	//monetary value = marketValue
-	public double calculateMonetaryValue() {
-		return marketValue;
+	public double calculateMonetaryValue() throws InvalidValueException {
+		return this.getMarketValue();
 	}
 
 }

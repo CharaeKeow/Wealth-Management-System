@@ -1,5 +1,7 @@
 package model;
 
+import controller.validator.InvalidValueException;
+
 public interface Asset {
-	public double calculateMonetaryValue();
+	abstract double calculateMonetaryValue() throws InvalidValueException;
 }

@@ -2,6 +2,7 @@ package controller.manager;
 
 import java.util.Vector;
 
+import controller.validator.InvalidValueException;
 import model.Gold;
 
 public class GoldManager {
@@ -30,6 +31,16 @@ public class GoldManager {
 		System.out.println("\nKarat: " + gold.getKarat());
 		System.out.println("Weight: " + gold.getWeight());
 		System.out.println("Price: " + gold.getPrice());
-		System.out.println("Monetary value: " + gold.calculateMonetaryValue());
+		//System.out.println("Monetary value: " + gold.calculateMonetaryValue());
+	}
+	
+	public static void displayMonetaryValue() throws InvalidValueException {
+		double total = 0;
+		
+		for (Gold gold : golds) {
+			total += gold.calculateMonetaryValue();
+		}
+		
+		System.out.println("RM " + total);
 	}
 }

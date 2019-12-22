@@ -1,5 +1,7 @@
 package model;
 
+import controller.validator.InvalidValueException;
+
 public class BankAccount extends Saving implements Asset {
 	
 	private String accountNo;
@@ -7,7 +9,7 @@ public class BankAccount extends Saving implements Asset {
 	private double balance;
 	private double interestRate;
 	
-	public BankAccount(String accountNo, String bankName, double balance, double interestRate) {
+	public BankAccount(String accountNo, String bankName, double balance, double interestRate) throws InvalidValueException {
 		this.accountNo = accountNo;
 		this.bankName = bankName;
 		this.balance = balance;
@@ -47,8 +49,23 @@ public class BankAccount extends Saving implements Asset {
 	}
 
 	@Override
-	public double calculateMonetaryValue() {		
+	public double calculateMonetaryValue() throws InvalidValueException {		
 		return balance * (1 + interestRate);
+	}
+
+	@Override
+	public void deposit(double amount) {
+		this.balance += amount;		
+	}
+
+	@Override
+	public void withdraw(double amount) {
+		if (this.balance > amount) {
+			this.balance -= amount;	
+			System.out.println("Withdraw successful. The new balance is: " + this.getBalance());
+		} else {
+			System.out.println("Insufficient balance. Cannot withdraw money.");
+		}		
 	}
 
 }

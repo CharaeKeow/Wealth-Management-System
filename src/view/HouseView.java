@@ -3,16 +3,19 @@ package view;
 import java.util.Scanner;
 
 import controller.manager.HouseManager;
+import controller.validator.InvalidValueException;
+import controller.validator.Validator;
 import model.House;
 
 public class HouseView extends View {
 
 	void displayOption() {
 		System.out.println("\nManage House");
-		System.out.println("============");
+		System.out.println("==============");
 		System.out.println("1. Add House");
 		System.out.println("2. Display House");
-		System.out.println("3. Back to main menu\n");
+		System.out.println("3. Display monetary value");
+		System.out.println("4. Back to main menu\n");
 	}
 	
 	void processOption(Scanner scanner, int choice) {	
@@ -45,24 +48,35 @@ public class HouseView extends View {
 			marketValue = scanner.nextDouble();
 			
 			//Pass the value into the constructor, create new object
-			House house = new House(area, numOfFloors, address, marketValue);
+			House house = null;
 			
-			if (HouseManager.addHouse(house) != 0) {
-				System.out.println("Successfully added a new house");
+			try {
+				
+				Validator.validate(house = new House(area, numOfFloors, address, marketValue));
+				
+				if (HouseManager.addHouse(house) != 0) {
+					System.out.println("Successfully added a new house");
+				} else {
+					System.out.println("Unsuccessful operation.");
+				}
+				
+			} catch (InvalidValueException e) {
+				System.out.println(e.getMessage());
 			}
-			
-			
-			//Check
-			/*
-			 else {
-				System.out.println("Unsuccessful operation.");
-			}*/
 			
 		} else if (choice == 2) {
 			System.out.println("Display House: ");
 			System.out.println("==============");
 			
 			HouseManager.displayHouses();
+		} else if (choice == 3) {
+			System.out.println("Monetary value");
+			
+			try {
+				HouseManager.displayMonetaryValue();
+			} catch (InvalidValueException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		displayOption();
 	}

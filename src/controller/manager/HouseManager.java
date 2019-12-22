@@ -1,6 +1,8 @@
 package controller.manager;
 
 import java.util.Vector;
+
+import controller.validator.InvalidValueException;
 import model.House;
 
 public class HouseManager { 
@@ -29,6 +31,13 @@ public class HouseManager {
 		System.out.println("Numbe of floors: " + house.getNumOfFloors());
 		System.out.println("Address: " + house.getAddress());
 		System.out.println("Market Value: " + house.getMarketValue());
-		System.out.println("Monetary value: " + house.calculateMonetaryValue());
+	}
+	
+	public static void displayMonetaryValue() throws InvalidValueException {
+		double total = 0;
+		for (House house : houses) {
+			total += house.calculateMonetaryValue();
+		}
+		System.out.println("RM " + total);
 	}
 }

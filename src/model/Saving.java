@@ -1,11 +1,7 @@
 package model;
 
-public abstract class Saving {
-	public void deposit(double amount) {
-		
-	}
+abstract class Saving {
+	abstract void deposit(double amount);
 	
-	public void withdraw(double amount) {
-		
-	}
+	abstract void withdraw(double amount);
 }

@@ -2,6 +2,7 @@ package controller.manager;
 
 import java.util.Vector;
 
+import controller.validator.InvalidValueException;
 import model.BankAccount;
 
 public class BankAccountManager {
@@ -31,6 +32,36 @@ public class BankAccountManager {
 		System.out.println("Bank Name: " + bankAccount.getBankName());
 		System.out.println("Balance: " + bankAccount.getBalance());
 		System.out.println("Interest rate: " + bankAccount.getInterestRate());
-		System.out.println("Monetary value: " + bankAccount.calculateMonetaryValue());
+	}
+	
+	public static void displayMonetaryValue() throws InvalidValueException {
+		
+		double total = 0;
+		
+		for (BankAccount bankAccount : bankAccounts) {
+			total += bankAccount.calculateMonetaryValue();
+		}
+		
+		System.out.println("RM " + total);
+	}
+	
+	public static void withdrawMoney(String accountNo, double amount) {
+		
+		for(BankAccount bankAccount : bankAccounts) {
+			if (bankAccount.getAccountNo().equalsIgnoreCase(accountNo)) {
+				bankAccount.withdraw(amount);
+				System.out.println("Withdraw successful. The new balance is: " + bankAccount.getBalance());
+			}
+		}		
+	}
+	
+	public static void depositMoney(String accountNo, double amount) {
+		
+		for(BankAccount bankAccount : bankAccounts) {
+			if (bankAccount.getAccountNo().equalsIgnoreCase(accountNo)) {
+				bankAccount.deposit(amount);
+				System.out.println("Deposit successful. The new balance is: " + bankAccount.getBalance());
+			}
+		}		
 	}
 }
